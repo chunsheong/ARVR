@@ -23,6 +23,12 @@ class HUDControllerTest(unittest.TestCase):
         self.assertIsNone(done.current_step)
         self.assertEqual(done.overlay_color, "black")
 
+    def test_custom_overlay_color_is_preserved(self) -> None:
+        hud = HUDController([SOPStep("step 1")], overlay_color="green")
+
+        state = hud.process_frame(frame=object(), step_detected=False)
+        self.assertEqual(state.overlay_color, "green")
+
 
 if __name__ == "__main__":
     unittest.main()
